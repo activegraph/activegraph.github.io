@@ -4,12 +4,12 @@ layout: home
 ---
 
 ## Start Here
-#### [Getting started with ActiveGraph]({% link _guides/getting-started.markdown %})
+#### [Getting started with ActiveGraph]({% link guides/getting-started.markdown %})
 Everything you need to know to install ActiveGraph and create your first application.
 
 ---
 
 ## Instrumenting
-#### [Requests tracing basics]({% link _guides/open-telemetry.markdown %})
+#### [Requests tracing basics]({% link guides/open-telemetry.markdown %})
 This guide describes how to use ```activertacing``` to enable observability.
 

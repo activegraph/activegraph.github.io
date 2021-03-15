@@ -23,7 +23,7 @@ plugins:
   - jekyll-toc
 
 include:
-  - _guides
+  - guides
 
 exclude:
   - package-lock.json
