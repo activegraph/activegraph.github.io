@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+  {%- include head.html -%}
+
+  <body>
+    {%- include header.html -%}
+    <div class="flash flash-full">
+      <div class="margin-auto col-md-11 col-lg-7">
+        <h3 class="pb-2">{{ page.title }}</h3>
+        {% for item in page.checklist %}
+        <p>{% octicon check-circle class:"text-green" %}{{ item }}</p>
+        {% endfor %}
+      </div>
+    </div>
+    <main class="margin-auto col-md-11 col-lg-7 d-md-flex flex-row-reverse flex-justify-center flex-row">
+      <div class="flex-shrink-0 m-3">
+        <h3>Chapters</h3>
+        {{ content | toc_only }}
+      </div>
+      <div class="flex-1 m-3">
+        {{ content }}
+      </div>
+    </main>
+  </body>
+</html>

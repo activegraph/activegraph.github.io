@@ -1,0 +1,33 @@
+---
+---
+
+@import '@primer/css/alerts/index.scss';
+@import '@primer/css/blankslate/index.scss';
+@import '@primer/css/core/index.scss';
+@import '@primer/css/header/index.scss';
+@import '@primer/css/markdown/index.scss';
+@import '@primer/css/utilities/index.scss';
+
+
+$primary-color: $red-600;
+$secondary-color: $red-900;
+
+.margin-auto {
+  margin: auto;
+}
+
+
+a {
+  color: $secondary-color;
+}
+
+
+.Header {
+  background-color: $primary-color;
+}
+
+
+li {
+  list-style-type: none;
+  font-weight: bold;
+}

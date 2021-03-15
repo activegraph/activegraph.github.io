@@ -1,0 +1,30 @@
+title: ActiveGraph
+version: v0.0.4-b
+description: >-
+    A Go frameowrk for building modern web applications
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+repository: activegraph/activegraph
+
+markdown: kramdown
+
+sass:
+  sass_dir: assets/css
+  load_paths:
+    - node_modules/
+
+toc:
+  ordered_list: true
+
+# Build settings
+plugins:
+  - jekyll-feed
+  - jekyll-octicons
+  - jekyll-toc
+
+include:
+  - _guides
+
+exclude:
+  - package-lock.json
+  - package.json
