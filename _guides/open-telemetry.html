@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Requests Tracing Basics - ActiveGraph Guides</title>
+  <link rel="stylesheet" href="/assets/css/main.css"></link>
+</head>
+<body><div class="Header flex-justify-center">
+  <div class="Header-item">
+    <a class="Header-link" href="/">Guides</a>
+  </div>
+  <div class="Header-item">
+    <a class="Header-link" href="https://pkg.go.dev/github.com/activegraph/activegraph">Documentation</a>
+  </div>
+</div>
+<div class="flash flash-full">
+      <div class="margin-auto col-md-11 col-lg-7">
+        <h3 class="pb-2">Requests Tracing Basics</h3>
+        
+        <p><svg class="octicon octicon-check-circle text-green" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM0 8a8 8 0 1116 0A8 8 0 010 8zm11.78-1.72a.75.75 0 00-1.06-1.06L6.75 9.19 5.28 7.72a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l4.5-4.5z"></path></svg>How to trace GraphQL operations of ActiveGraph application using OpenTelemetry.</p>
+        
+      </div>
+    </div>
+    <main class="margin-auto col-md-11 col-lg-7 d-md-flex flex-row-reverse flex-justify-center flex-row">
+      <div class="flex-shrink-0 m-3">
+        <h3>Chapters</h3>
+        
+      </div>
+      <div class="flex-1 m-3">
+        <p><strong>Resly</strong> supports <a href="https://opentracing.io">Open Tracing</a> out of box. Tracer
+is configured on the <code class="language-plaintext highlighter-rouge">Server</code> configuration step.</p>
+
+<p>The example below shows how to configure <a href="https://www.jaegertracing.io">Jaeger</a>
+tracing for <strong>Resly</strong> server.</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">(</span>
+    <span class="s">"github.com/resly/resly"</span>
+
+    <span class="n">jaeger</span> <span class="s">"github.com/uber/jaeger-client-go"</span>
+    <span class="n">jaegercfg</span> <span class="s">"github.com/uber/jaeger-client-go/config"</span>
+<span class="p">)</span>
+
+<span class="k">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c">// Setup Jaeger tracer configuration.</span>
+    <span class="n">cfg</span> <span class="o">:=</span> <span class="n">jaegercfg</span><span class="o">.</span><span class="n">Configuration</span><span class="p">{</span>
+        <span class="n">ServiceName</span><span class="o">:</span> <span class="s">"service_name"</span><span class="p">,</span>
+        <span class="n">Sampler</span><span class="o">:</span> <span class="o">&amp;</span><span class="n">jaegercfg</span><span class="o">.</span><span class="n">SamplerConfig</span><span class="p">{</span>
+            <span class="n">Type</span><span class="o">:</span> <span class="n">jaeger</span><span class="o">.</span><span class="n">SamplerTypeConst</span><span class="p">,</span>
+            <span class="n">Param</span><span class="o">:</span> <span class="m">1</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="n">Reporter</span><span class="o">:</span> <span class="o">&amp;</span><span class="n">jaegercfg</span><span class="o">.</span><span class="n">ReporterConfig</span><span class="p">{</span>
+            <span class="n">LogSpans</span><span class="o">:</span> <span class="no">true</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">}</span>
+
+    <span class="c">// Create a new tracer instance.</span>
+    <span class="n">tracer</span><span class="p">,</span> <span class="n">closer</span><span class="p">,</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">jaeger</span><span class="o">.</span><span class="n">NewTracer</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
+    <span class="k">defer</span> <span class="n">closer</span><span class="o">.</span><span class="n">Close</span><span class="p">()</span>
+
+    <span class="c">// Pass tracer to the server configuration.</span>
+    <span class="n">s</span> <span class="o">:=</span> <span class="n">resly</span><span class="o">.</span><span class="n">Server</span> <span class="p">{</span>
+        <span class="n">Tracer</span><span class="o">:</span> <span class="n">tracer</span><span class="p">,</span>
+        <span class="n">Queries</span><span class="o">:</span> <span class="p">[]</span><span class="n">resly</span><span class="o">.</span><span class="n">FuncDef</span><span class="p">{</span> <span class="c">/* ... */</span> <span class="p">},</span>
+    <span class="p">}</span>
+
+    <span class="c">// ...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+      </div>
+    </main>
+  </body>
+</html>
