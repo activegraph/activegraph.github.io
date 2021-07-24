@@ -43,7 +43,7 @@ just getting started with GraphQL, we recommend going through <a href="https://g
 
 <h2 id="1-define-a-new-model-type">1 Define a new model type</h2>
 
-<p>Unlike other GraphQL frameworks, <strong>Resly</strong> does not forces to write GraphQL
+<p>Unlike other GraphQL frameworks, <strong>ActiveGraph</strong> does not forces to write GraphQL
 schema separately from the Go types. JSON tags for each field of the Go type are
 used to define names for GraphQL type fields.</p>
 
@@ -67,7 +67,7 @@ used to define names for GraphQL type fields.</p>
 <h2 id="2-define-function-to-query-posts">2 Define function to query posts</h2>
 
 <p>You can use existing functions to retrieve data from the the database, as long
-as <strong>Resly</strong> does not inject any depenencies into the client code.</p>
+as <strong>ActiveGraph</strong> does not inject any depenencies into the client code.</p>
 
 <div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">func</span> <span class="n">queryPosts</span><span class="p">(</span><span class="n">ctx</span> <span class="n">context</span><span class="o">.</span><span class="n">Context</span><span class="p">)</span> <span class="p">([]</span><span class="n">Post</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">posts</span><span class="p">,</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">db</span><span class="o">.</span><span class="n">Query</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Active Records Basics - ActiveGraph Guides</title>
+  <link rel="stylesheet" href="/assets/css/main.css"></link>
+</head>
+<body><div class="Header flex-justify-center">
+  <div class="Header-item">
+    <a class="Header-link" href="/">Guides</a>
+  </div>
+  <div class="Header-item">
+    <a class="Header-link" href="https://pkg.go.dev/github.com/activegraph/activegraph">Documentation</a>
+  </div>
+</div>
+<div class="flash flash-full">
+      <div class="margin-auto col-md-11 col-lg-7">
+        <h3 class="pb-2">Active Records Basics</h3>
+        
+        <p><svg class="octicon octicon-check-circle text-green" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM0 8a8 8 0 1116 0A8 8 0 010 8zm11.78-1.72a.75.75 0 00-1.06-1.06L6.75 9.19 5.28 7.72a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l4.5-4.5z"></path></svg>How to use Active Record models to manipulate data stored in a relational database.</p>
+        
+      </div>
+    </div>
+    <main class="margin-auto col-md-11 col-lg-7 d-md-flex flex-row-reverse flex-justify-center flex-row">
+      <div class="flex-shrink-0 m-3">
+        <h3>Chapters</h3>
+        <ol id="toc" class="section-nav">
+<li class="toc-entry toc-h2"><a href="#1-creating-active-record-models">1 Creating Active Record Models</a></li>
+</ol>
+      </div>
+      <div class="flex-1 m-3">
+        <h2 id="1-creating-active-record-models">1 Creating Active Record Models</h2>
+
+<p>To create Active Record models, use the <code class="language-plaintext highlighter-rouge">New</code> method from <code class="language-plaintext highlighter-rouge">activerecord</code> package
+and you’re good to go:</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">var</span> <span class="n">Product</span> <span class="o">=</span> <span class="n">activerecord</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="s">"product"</span><span class="p">,</span> <span class="k">func</span><span class="p">(</span><span class="n">r</span> <span class="o">*</span><span class="n">activerecord</span><span class="o">.</span><span class="n">R</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">AttrString</span><span class="p">(</span><span class="s">"name"</span><span class="p">),</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>The schema above declares a table with two columns: id and name. Each row of this table
+represents a certain product with these two parameters. Thus, you would be able to write
+code like the following:</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">p</span> <span class="o">:=</span> <span class="n">Product</span><span class="o">.</span><span class="n">New</span><span class="p">()</span>
+<span class="n">p</span><span class="o">.</span><span class="n">AssignAttribute</span><span class="p">(</span><span class="s">"name"</span><span class="p">,</span> <span class="s">"Some Book"</span><span class="p">)</span>
+
+<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="c">// #&lt;Product name: "Some Book"&gt;</span>
+</code></pre></div></div>
+
+      </div>
+    </main>
+  </body>
+</html>
