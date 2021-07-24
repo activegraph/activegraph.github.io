@@ -1,12 +1,13 @@
 title: ActiveGraph
 version: v0.0.4-b
 description: >-
-    A Go frameowrk for building modern web applications
+    A Go framework for building modern web applications
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 repository: activegraph/activegraph
 
 markdown: kramdown
+highlighter: rouge
 
 sass:
   sass_dir: assets/css
