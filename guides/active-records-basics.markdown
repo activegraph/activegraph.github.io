@@ -12,9 +12,16 @@ To create Active Record models, use the `New` method from `activerecord` package
 and you're good to go:
 
 ```go
-var Product = activerecord.New("product", func(r *activerecord.R) {
-    r.AttrString("name"),
-})
+var Product = activerecord.New("product")
+```
+
+Suppose that the `products` table was created using an SQL statements like following:
+```sql
+CREATE TABLE products (
+  id    INTEGER    NOT NULL auto_increment,
+  name  VARCHAR,
+  PRIMARY KEY (id)
+);
 ```
 
 The schema above declares a table with two columns: id and name. Each row of this table
