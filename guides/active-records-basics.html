@@ -36,9 +36,15 @@
 <p>To create Active Record models, use the <code class="language-plaintext highlighter-rouge">New</code> method from <code class="language-plaintext highlighter-rouge">activerecord</code> package
 and you’re good to go:</p>
 
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">var</span> <span class="n">Product</span> <span class="o">=</span> <span class="n">activerecord</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="s">"product"</span><span class="p">,</span> <span class="k">func</span><span class="p">(</span><span class="n">r</span> <span class="o">*</span><span class="n">activerecord</span><span class="o">.</span><span class="n">R</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">r</span><span class="o">.</span><span class="n">AttrString</span><span class="p">(</span><span class="s">"name"</span><span class="p">),</span>
-<span class="p">})</span>
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">var</span> <span class="n">Product</span> <span class="o">=</span> <span class="n">activerecord</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="s">"product"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Suppose that the <code class="language-plaintext highlighter-rouge">products</code> table was created using an SQL statements like following:</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">products</span> <span class="p">(</span>
+  <span class="n">id</span>    <span class="nb">INTEGER</span>    <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">auto_increment</span><span class="p">,</span>
+  <span class="n">name</span>  <span class="nb">VARCHAR</span><span class="p">,</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span>
+<span class="p">);</span>
 </code></pre></div></div>
 
 <p>The schema above declares a table with two columns: id and name. Each row of this table
