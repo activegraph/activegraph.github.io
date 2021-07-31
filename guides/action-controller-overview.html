@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Action Controller Overview - ActiveGraph Guides</title>
+  <link rel="stylesheet" href="/assets/css/main.css"></link>
+</head>
+<body><div class="Header flex-justify-center">
+  <div class="Header-item">
+    <a class="Header-link" href="/">Guides</a>
+  </div>
+  <div class="Header-item">
+    <a class="Header-link" href="https://pkg.go.dev/github.com/activegraph/activegraph">Documentation</a>
+  </div>
+</div>
+<div class="flash flash-full">
+      <div class="margin-auto col-md-11 col-lg-6">
+        <h3 class="pb-2">Action Controller Overview</h3>
+        
+        <p><svg class="octicon octicon-check-circle text-green" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM0 8a8 8 0 1116 0A8 8 0 010 8zm11.78-1.72a.75.75 0 00-1.06-1.06L6.75 9.19 5.28 7.72a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l4.5-4.5z"></path></svg>How to follow the flow of a request through a controller.</p>
+        
+      </div>
+    </div>
+    <main class="margin-auto col-md-11 col-lg-6 d-md-flex flex-row-reverse flex-justify-center flex-row">
+      <div class="flex-shrink-0 m-3">
+        <h3>Chapters</h3>
+        <ol id="toc" class="section-nav">
+<li class="toc-entry toc-h2"><a href="#1-actions">1 Actions</a></li>
+<li class="toc-entry toc-h2"><a href="#2-filters">2 Filters</a></li>
+</ol>
+      </div>
+      <div class="flex-1 m-3">
+        <h2 id="1-actions">1 Actions</h2>
+
+<p>When the controller receives the request, the routing determines which controller
+and action to run, then creates a new context and executes the necessary method.</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">var</span> <span class="n">ProductController</span> <span class="o">=</span> <span class="n">actioncontroller</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="k">func</span><span class="p">(</span><span class="n">c</span> <span class="o">*</span><span class="n">actioncontroller</span><span class="o">.</span><span class="n">C</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="c">// Index action is rendered as a `products { }` query in the resulting</span>
+    <span class="c">// GraphQL scheama. Additionally, the input parameters could be overridden</span>
+    <span class="c">// with `Permit` call.</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="k">func</span><span class="p">(</span><span class="n">ctx</span> <span class="o">*</span><span class="n">actioncontroller</span><span class="o">.</span><span class="n">Context</span><span class="p">)</span> <span class="n">actioncontroller</span><span class="o">.</span><span class="n">Result</span> <span class="p">{</span>
+        <span class="n">products</span> <span class="o">:=</span> <span class="n">activesupport</span><span class="o">.</span><span class="n">Return</span><span class="p">(</span><span class="n">Product</span><span class="o">.</span><span class="n">All</span><span class="p">()</span><span class="o">.</span><span class="n">ToA</span><span class="p">())</span>
+
+        <span class="c">// Action should return implementation of a `Result`,</span>
+        <span class="c">// in case of GraphQL, this is always `ContentResult`.</span>
+        <span class="k">return</span> <span class="n">actionview</span><span class="o">.</span><span class="n">ContentResult</span><span class="p">(</span><span class="n">authors</span><span class="p">)</span>
+    <span class="p">})</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>As an example, if a user calls query <code class="language-plaintext highlighter-rouge">query { products { id, name } }</code> in your
+application to list all available products, Active Graph will execute an action
+<code class="language-plaintext highlighter-rouge">Index</code> of the <code class="language-plaintext highlighter-rouge">ProductController</code>.</p>
+
+<h2 id="2-filters">2 Filters</h2>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">func</span> <span class="n">RequireLogin</span><span class="p">(</span><span class="n">ctx</span> <span class="o">*</span><span class="n">actioncontroller</span><span class="o">.</span><span class="n">Context</span><span class="p">)</span> <span class="n">actioncontroller</span><span class="o">.</span><span class="n">Result</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="o">!</span><span class="n">loggedIn</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">actionview</span><span class="o">.</span><span class="n">ContentResult</span><span class="p">(</span><span class="n">errors</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="s">"not logged in"</span><span class="p">))</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="no">nil</span>
+<span class="p">}</span>
+
+
+<span class="k">var</span> <span class="n">AdminController</span> <span class="o">=</span> <span class="n">actioncontroller</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="k">func</span><span class="p">(</span><span class="n">c</span> <span class="o">*</span><span class="n">actioncontroller</span><span class="o">.</span><span class="n">C</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">BeforeAction</span><span class="p">(</span><span class="n">RequireLogin</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+      </div>
+    </main>
+  </body>
+</html>
