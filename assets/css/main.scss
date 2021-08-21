@@ -28,6 +28,10 @@ li {
   font-weight: bold;
 }
 
+ol ol {
+  margin-left: 10%;
+}
+
 pre {
   overflow: auto;
   padding: $spacer-3;

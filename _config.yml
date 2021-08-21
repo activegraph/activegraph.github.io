@@ -1,5 +1,5 @@
 title: ActiveGraph
-version: v0.0.4-b
+version: master
 description: >-
     A Go framework for building modern web applications
 baseurl: "" # the subpath of your site, e.g. /blog

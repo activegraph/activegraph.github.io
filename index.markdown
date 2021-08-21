@@ -15,7 +15,7 @@ Record pattern and package.
 
 <hr>
 
-### [Active Records Validations]()
+### [Active Records Validations]({% link guides/active-records-validations.markdown %})
 
 This guide covers how to use Active Record validations.
 

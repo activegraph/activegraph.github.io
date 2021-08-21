@@ -12,7 +12,7 @@ When the controller receives the request, the routing determines which controlle
 and action to run, then creates a new context and executes the necessary method.
 
 ```go
-var ProductController = actioncontroller.New(func(c *actioncontroller.C) {
+ProductController := actioncontroller.New(func(c *actioncontroller.C) {
 
     // Index action is rendered as a `products { }` query in the resulting
     // GraphQL scheama. Additionally, the input parameters could be overridden
@@ -43,7 +43,7 @@ func RequireLogin(ctx *actioncontroller.Context) actioncontroller.Result {
 }
 
 
-var AdminController = actioncontroller.New(func(c *actioncontroller.C) {
+AdminController := actioncontroller.New(func(c *actioncontroller.C) {
     c.BeforeAction(RequireLogin)
 })
 ```

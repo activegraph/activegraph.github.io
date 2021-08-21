@@ -12,7 +12,7 @@ To create Active Record models, use the `New` method from `activerecord` package
 and you're good to go:
 
 ```go
-var Product = activerecord.New("product")
+Product := activerecord.New("product")
 ```
 
 Suppose that the `products` table was created using an SQL statements like following:
