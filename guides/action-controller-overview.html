@@ -37,7 +37,7 @@
 <p>When the controller receives the request, the routing determines which controller
 and action to run, then creates a new context and executes the necessary method.</p>
 
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">var</span> <span class="n">ProductController</span> <span class="o">=</span> <span class="n">actioncontroller</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="k">func</span><span class="p">(</span><span class="n">c</span> <span class="o">*</span><span class="n">actioncontroller</span><span class="o">.</span><span class="n">C</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ProductController</span> <span class="o">:=</span> <span class="n">actioncontroller</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="k">func</span><span class="p">(</span><span class="n">c</span> <span class="o">*</span><span class="n">actioncontroller</span><span class="o">.</span><span class="n">C</span><span class="p">)</span> <span class="p">{</span>
 
     <span class="c">// Index action is rendered as a `products { }` query in the resulting</span>
     <span class="c">// GraphQL scheama. Additionally, the input parameters could be overridden</span>
@@ -66,7 +66,7 @@ application to list all available products, Active Graph will execute an action
 <span class="p">}</span>
 
 
-<span class="k">var</span> <span class="n">AdminController</span> <span class="o">=</span> <span class="n">actioncontroller</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="k">func</span><span class="p">(</span><span class="n">c</span> <span class="o">*</span><span class="n">actioncontroller</span><span class="o">.</span><span class="n">C</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">AdminController</span> <span class="o">:=</span> <span class="n">actioncontroller</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="k">func</span><span class="p">(</span><span class="n">c</span> <span class="o">*</span><span class="n">actioncontroller</span><span class="o">.</span><span class="n">C</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">c</span><span class="o">.</span><span class="n">BeforeAction</span><span class="p">(</span><span class="n">RequireLogin</span><span class="p">)</span>
 <span class="p">})</span>
 </code></pre></div></div>

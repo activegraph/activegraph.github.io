@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Active Records Validations - ActiveGraph Guides</title>
+  <link rel="stylesheet" href="/assets/css/main.css"></link>
+</head>
+<body><div class="Header flex-justify-center">
+  <div class="Header-item">
+    <a class="Header-link" href="/">Guides</a>
+  </div>
+  <div class="Header-item">
+    <a class="Header-link" href="https://pkg.go.dev/github.com/activegraph/activegraph">Documentation</a>
+  </div>
+</div>
+<div class="flash flash-full">
+      <div class="margin-auto col-md-11 col-lg-6">
+        <h3 class="pb-2">Active Records Validations</h3>
+        
+        <p><svg class="octicon octicon-check-circle text-green" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM0 8a8 8 0 1116 0A8 8 0 010 8zm11.78-1.72a.75.75 0 00-1.06-1.06L6.75 9.19 5.28 7.72a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l4.5-4.5z"></path></svg>How to use built-in Active Record validations.</p>
+        
+      </div>
+    </div>
+    <main class="margin-auto col-md-11 col-lg-6 d-md-flex flex-row-reverse flex-justify-center flex-row">
+      <div class="flex-shrink-0 m-3">
+        <h3>Chapters</h3>
+        <ol id="toc" class="section-nav">
+<li class="toc-entry toc-h2"><a href="#1-validations-overview">1 Validations Overview</a></li>
+<li class="toc-entry toc-h2"><a href="#2-validation-helpers">2 Validation Helpers</a>
+<ol>
+<li class="toc-entry toc-h3"><a href="#21-presence">2.1 Presence</a></li>
+<li class="toc-entry toc-h3"><a href="#22-inclusion">2.2 Inclusion</a></li>
+<li class="toc-entry toc-h3"><a href="#23-exclusion">2.3 Exclusion</a></li>
+<li class="toc-entry toc-h3"><a href="#24-format">2.4 Format</a></li>
+<li class="toc-entry toc-h3"><a href="#25-length">2.5 Length</a></li>
+</ol>
+</li>
+</ol>
+      </div>
+      <div class="flex-1 m-3">
+        <h2 id="1-validations-overview">1 Validations Overview</h2>
+
+<p>Call <code class="language-plaintext highlighter-rouge">Validates</code> method in a record builder to enable validation for an attribute:</p>
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Product</span> <span class="o">:=</span> <span class="n">activerecord</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="s">"product"</span><span class="p">,</span> <span class="k">func</span><span class="p">(</span><span class="n">r</span> <span class="o">*</span><span class="n">activerecord</span><span class="o">.</span><span class="n">R</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">ValidatesPresence</span><span class="p">(</span><span class="s">"name"</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">p</span> <span class="o">:=</span> <span class="n">Product</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="n">activesupport</span><span class="o">.</span><span class="n">Hash</span><span class="p">{</span><span class="s">"name"</span><span class="o">:</span> <span class="no">nil</span><span class="p">})</span>
+<span class="n">p</span><span class="o">.</span><span class="n">IsValid</span><span class="p">()</span> <span class="c">// false</span>
+</code></pre></div></div>
+
+<p>As you can see, the <code class="language-plaintext highlighter-rouge">Product</code> record without <code class="language-plaintext highlighter-rouge">name</code> attribute is not valid.</p>
+
+<h2 id="2-validation-helpers">2 Validation Helpers</h2>
+
+<p>A record builder <code class="language-plaintext highlighter-rouge">aciverecord.R</code> provides several helpful validators, further we will
+briefly describe all of them. For more details, please, refere to the API documentation.</p>
+
+<h3 id="21-presence">2.1 <code class="language-plaintext highlighter-rouge">Presence</code></h3>
+
+<p>This helper validates that value of the specified attribute is not blank. It uses
+<code class="language-plaintext highlighter-rouge">activesupport.IsBlank</code> method to make a validation. There are two ways to enable
+validation of the attribute. The first way is to use <code class="language-plaintext highlighter-rouge">Validates</code> method:</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Product</span> <span class="o">:=</span> <span class="n">activerecord</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="s">"product"</span><span class="p">,</span> <span class="k">func</span><span class="p">(</span><span class="n">r</span> <span class="o">*</span><span class="n">activerecord</span><span class="o">.</span><span class="n">R</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">Validates</span><span class="p">(</span><span class="s">"name"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">activerecord</span><span class="o">.</span><span class="n">Presence</span><span class="p">{})</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">Validates</span><span class="p">(</span><span class="s">"category"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">activerecord</span><span class="o">.</span><span class="n">Presence</span><span class="p">{</span><span class="n">AllowNil</span><span class="o">:</span> <span class="no">true</span><span class="p">})</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>The second way is to use <code class="language-plaintext highlighter-rouge">ValidatePresence</code> method that accepts multiple attribute names:</p>
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Product</span> <span class="o">:=</span> <span class="n">activerecord</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="s">"product"</span><span class="p">,</span> <span class="k">func</span><span class="p">(</span><span class="n">r</span> <span class="o">*</span><span class="n">activerecord</span><span class="o">.</span><span class="n">R</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">ValidatesPresence</span><span class="p">(</span><span class="s">"name"</span><span class="p">,</span> <span class="s">"category"</span><span class="p">,</span> <span class="s">"weight"</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>The default error message is <code class="language-plaintext highlighter-rouge">can't be blank</code>.</p>
+
+<h3 id="22-inclusion">2.2 <code class="language-plaintext highlighter-rouge">Inclusion</code></h3>
+
+<p>This helper validates that value of the specified attribute is available in a slice.</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Movie</span> <span class="o">:=</span> <span class="n">activerecord</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="s">"movie"</span><span class="p">,</span> <span class="k">func</span><span class="p">(</span><span class="n">r</span> <span class="o">*</span><span class="n">activerecord</span><span class="o">.</span><span class="n">R</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">Validates</span><span class="p">(</span><span class="s">"format"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">activerecord</span><span class="o">.</span><span class="n">Inclusion</span><span class="p">{</span><span class="n">In</span><span class="o">:</span> <span class="n">activesupport</span><span class="o">.</span><span class="n">Strings</span><span class="p">(</span><span class="s">"mkv"</span><span class="p">,</span> <span class="s">"avi"</span><span class="p">)})</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>The default error message is <code class="language-plaintext highlighter-rouge">is not included in the list</code>.</p>
+
+<h3 id="23-exclusion">2.3 <code class="language-plaintext highlighter-rouge">Exclusion</code></h3>
+
+<p>This helper validates that value of the specified attribute is not in the slice.</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Zone</span> <span class="o">:=</span> <span class="n">activerecord</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="s">"Zone"</span><span class="p">,</span> <span class="k">func</span><span class="p">(</span><span class="n">r</span> <span class="o">*</span><span class="n">activerecord</span><span class="o">.</span><span class="n">R</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">Validates</span><span class="p">(</span><span class="s">"name"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">activerecord</span><span class="o">.</span><span class="n">Exclusion</span><span class="p">{</span><span class="n">From</span><span class="o">:</span> <span class="n">activesupport</span><span class="o">.</span><span class="n">Strings</span><span class="p">(</span><span class="s">"tk"</span><span class="p">,</span> <span class="s">"biz"</span><span class="p">)})</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>The default error message is <code class="language-plaintext highlighter-rouge">is reserved</code>.</p>
+
+<h3 id="24-format">2.4 <code class="language-plaintext highlighter-rouge">Format</code></h3>
+
+<p>This helper validates that value of the specified attribute match the regular expression.</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Ticket</span> <span class="o">:=</span> <span class="n">activerecord</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="s">"ticket"</span><span class="p">,</span> <span class="k">func</span><span class="p">(</span><span class="n">r</span> <span class="o">*</span><span class="n">activerecord</span><span class="o">.</span><span class="n">R</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">Validates</span><span class="p">(</span><span class="s">"reference"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">activerecord</span><span class="o">.</span><span class="n">Format</span><span class="p">{</span><span class="n">With</span><span class="o">:</span> <span class="s">`[A-Z]{3}-[0-9]{4}`</span><span class="p">})</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>Alternatively, you can request that attribute does not match the regular expression
+using <code class="language-plaintext highlighter-rouge">Without</code> parameter of <code class="language-plaintext highlighter-rouge">Format</code> helper.</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Flight</span> <span class="o">:=</span> <span class="n">activerecord</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="s">"flight"</span><span class="p">,</span> <span class="k">func</span><span class="p">(</span><span class="n">r</span> <span class="o">*</span><span class="n">activerecord</span><span class="o">.</span><span class="n">R</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">Validates</span><span class="p">(</span><span class="s">"destination"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">activerecord</span><span class="o">.</span><span class="n">Format</span><span class="p">{</span><span class="n">Without</span><span class="o">:</span> <span class="s">`[0-9]`</span><span class="p">})</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>The default error message is <code class="language-plaintext highlighter-rouge">has invalid format</code>.</p>
+
+<h3 id="25-length">2.5 <code class="language-plaintext highlighter-rouge">Length</code></h3>
+
+<p>This helper validates that the attributes’ values comply with the specified length
+restrictions.</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Book</span> <span class="o">:=</span> <span class="n">activerecord</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="s">"book"</span><span class="p">,</span> <span class="k">func</span><span class="p">(</span><span class="n">r</span> <span class="o">*</span><span class="n">activerecord</span><span class="o">.</span><span class="n">R</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">Validates</span><span class="p">(</span><span class="s">"title"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">activerecord</span><span class="o">.</span><span class="n">Length</span><span class="p">{</span><span class="n">Maximum</span><span class="o">:</span> <span class="m">50</span><span class="p">})</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">Validates</span><span class="p">(</span><span class="s">"abstract"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">activerecord</span><span class="o">.</span><span class="n">Length</span><span class="p">{</span><span class="n">Minimum</span><span class="o">:</span> <span class="m">100</span><span class="p">,</span> <span class="n">Maximum</span><span class="o">:</span> <span class="m">200</span><span class="p">})</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>The default error message when value is too short is <code class="language-plaintext highlighter-rouge">is too short (minimum %d characters)</code>,
+when value is too long error with text <code class="language-plaintext highlighter-rouge">is too long (maximum %d characters)</code>.</p>
+
+      </div>
+    </main>
+  </body>
+</html>

@@ -4083,7 +4083,11 @@ a.branch-name { color: #0366d6; }
 
 .highlight .k { color: #388bfd; }
 
-.highlight { background-color: #f8f8f8; }
+.highlight { background-color: #f0f0f0; }
+
+code { background-color: #f0f0f0; border-radius: 2px; padding: 1px 2px; }
+
+h3 code { font-size: 20px; }
 
 .margin-auto { margin: auto; }
 
@@ -4092,6 +4096,8 @@ a { color: #86181d; }
 .Header { background-color: #cb2431; }
 
 li { list-style-type: none; font-weight: bold; }
+
+ol ol { margin-left: 10%; }
 
 pre { overflow: auto; padding: 16px; margin-bottom: 16px; }
 
