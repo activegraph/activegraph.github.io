@@ -12,11 +12,33 @@ $secondary-color: $red-900;
   margin: auto;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  margin: auto;
+  margin-top: 0;
+}
+
+footer {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-color: $bg-black;
+  width: 100%;
+  margin-top: auto;
+}
+
+footer p {
+  color: $white-fade-70;
+}
 
 a {
   color: $secondary-color;
 }
-
 
 .Header {
   background-color: $primary-color;
