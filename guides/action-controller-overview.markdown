@@ -6,7 +6,7 @@ checklist:
 - How to follow the flow of a request through a controller.
 ---
 
-## 1 Actions
+# 1. [Actions](#1-actions)
 
 When the controller receives the request, the routing determines which controller
 and action to run, then creates a new context and executes the necessary method.
@@ -32,7 +32,7 @@ application to list all available products, Active Graph will execute an action
 `Index` of the `ProductController`.
 
 
-## 2 Filters
+# 2. [Filters](#2-filters)
 
 ```go
 func RequireLogin(ctx *actioncontroller.Context) actioncontroller.Result {
