@@ -7,40 +7,52 @@
   <title>Active Records Validations - ActiveGraph Guides</title>
   <link rel="stylesheet" href="/assets/css/main.css"></link>
 </head>
-<body><div class="Header flex-justify-center">
-  <div class="Header-item">
-    <a class="Header-link" href="/">Guides</a>
-  </div>
-  <div class="Header-item">
-    <a class="Header-link" href="https://pkg.go.dev/github.com/activegraph/activegraph">Documentation</a>
+<body><div class="Header">
+  <div class="d-flex col-md-11 col-lg-7 col-xl-5">
+    <div class="Header-item">
+      <a class="btn btn-outline" href="/">GUIDES</a>
+    </div>
+    <div class="Header-item">
+      <a class="btn btn-outline" href="https://pkg.go.dev/github.com/activegraph/activegraph">
+        DOCUMENTATION<span><svg height="16" class="octicon octicon-arrow-up-right" viewBox="0 0 24 24" version="1.1" width="16" aria-hidden="true"><path fill-rule="evenodd" d="M18.25 15.5a.75.75 0 00.75-.75v-9a.75.75 0 00-.75-.75h-9a.75.75 0 000 1.5h7.19L6.22 16.72a.75.75 0 101.06 1.06L17.5 7.56v7.19c0 .414.336.75.75.75z"></path></svg></span>
+      </a>
+    </div>
+    <div class="Header-item">
+      <a class="btn btn-outline" href="https://github.com/activegraph/activegraph">
+        GITHUB<span><svg height="16" class="octicon octicon-arrow-up-right" viewBox="0 0 24 24" version="1.1" width="16" aria-hidden="true"><path fill-rule="evenodd" d="M18.25 15.5a.75.75 0 00.75-.75v-9a.75.75 0 00-.75-.75h-9a.75.75 0 000 1.5h7.19L6.22 16.72a.75.75 0 101.06 1.06L17.5 7.56v7.19c0 .414.336.75.75.75z"></path></svg></span>
+      </a>
+    </div>
   </div>
 </div>
 <div class="flash flash-full">
-      <div class="margin-auto col-md-11 col-lg-6">
-        <h3 class="pb-2">Active Records Validations</h3>
+      <div class="margin-auto col-md-11 col-lg-7 col-xl-5">
+        <h1 class="pb-2">Active Records Validations</h1>
+        <p>This guide teaches you how to validate the state of objects before
+they go into the database using Active Record's validations feature.
+</p>
         
         <p><svg class="octicon octicon-check-circle text-green" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM0 8a8 8 0 1116 0A8 8 0 010 8zm11.78-1.72a.75.75 0 00-1.06-1.06L6.75 9.19 5.28 7.72a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l4.5-4.5z"></path></svg>How to use built-in Active Record validations.</p>
         
       </div>
     </div>
-    <main class="margin-auto col-md-11 col-lg-6 d-md-flex flex-row-reverse flex-justify-center flex-row">
-      <div class="flex-shrink-0 m-3">
-        <h3>Chapters</h3>
+    <main class="guide col-md-11 col-lg-7 col-xl-5">
+      <div class="m-3">
+        <h2>Chapters</h2>
         <ol id="toc" class="section-nav">
-<li class="toc-entry toc-h2"><a href="#1-validations-overview">1 Validations Overview</a></li>
-<li class="toc-entry toc-h2"><a href="#2-validation-helpers">2 Validation Helpers</a>
+<li class="toc-entry toc-h1"><a href="#1-validations-overview">1. Validations Overview</a></li>
+<li class="toc-entry toc-h1"><a href="#2-validation-helpers">2. Validation Helpers</a>
 <ol>
-<li class="toc-entry toc-h3"><a href="#21-presence">2.1 Presence</a></li>
-<li class="toc-entry toc-h3"><a href="#22-inclusion">2.2 Inclusion</a></li>
-<li class="toc-entry toc-h3"><a href="#23-exclusion">2.3 Exclusion</a></li>
-<li class="toc-entry toc-h3"><a href="#24-format">2.4 Format</a></li>
-<li class="toc-entry toc-h3"><a href="#25-length">2.5 Length</a></li>
+<li class="toc-entry toc-h2"><a href="#21-presence">2.1. Presence</a></li>
+<li class="toc-entry toc-h2"><a href="#22-inclusion">2.2. Inclusion</a></li>
+<li class="toc-entry toc-h2"><a href="#23-exclusion">2.3. Exclusion</a></li>
+<li class="toc-entry toc-h2"><a href="#24-format">2.4. Format</a></li>
+<li class="toc-entry toc-h2"><a href="#25-length">2.5. Length</a></li>
 </ol>
 </li>
 </ol>
       </div>
-      <div class="flex-1 m-3">
-        <h2 id="1-validations-overview">1 Validations Overview</h2>
+      <div class="m-3">
+        <h1 id="1-validations-overview">1. <a href="#1-validations-overview">Validations Overview</a></h1>
 
 <p>Call <code class="language-plaintext highlighter-rouge">Validates</code> method in a record builder to enable validation for an attribute:</p>
 <div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Product</span> <span class="o">:=</span> <span class="n">activerecord</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="s">"product"</span><span class="p">,</span> <span class="k">func</span><span class="p">(</span><span class="n">r</span> <span class="o">*</span><span class="n">activerecord</span><span class="o">.</span><span class="n">R</span><span class="p">)</span> <span class="p">{</span>
@@ -54,12 +66,12 @@
 
 <p>As you can see, the <code class="language-plaintext highlighter-rouge">Product</code> record without <code class="language-plaintext highlighter-rouge">name</code> attribute is not valid.</p>
 
-<h2 id="2-validation-helpers">2 Validation Helpers</h2>
+<h1 id="2-validation-helpers">2. <a href="#2-validation-helpers">Validation Helpers</a></h1>
 
 <p>A record builder <code class="language-plaintext highlighter-rouge">aciverecord.R</code> provides several helpful validators, further we will
 briefly describe all of them. For more details, please, refere to the API documentation.</p>
 
-<h3 id="21-presence">2.1 <code class="language-plaintext highlighter-rouge">Presence</code></h3>
+<h2 id="21-presence">2.1. <a href="#21-presence">Presence</a></h2>
 
 <p>This helper validates that value of the specified attribute is not blank. It uses
 <code class="language-plaintext highlighter-rouge">activesupport.IsBlank</code> method to make a validation. There are two ways to enable
@@ -79,7 +91,7 @@ validation of the attribute. The first way is to use <code class="language-plain
 
 <p>The default error message is <code class="language-plaintext highlighter-rouge">can't be blank</code>.</p>
 
-<h3 id="22-inclusion">2.2 <code class="language-plaintext highlighter-rouge">Inclusion</code></h3>
+<h2 id="22-inclusion">2.2. <a href="#22-inclusion">Inclusion</a></h2>
 
 <p>This helper validates that value of the specified attribute is available in a slice.</p>
 
@@ -90,7 +102,7 @@ validation of the attribute. The first way is to use <code class="language-plain
 
 <p>The default error message is <code class="language-plaintext highlighter-rouge">is not included in the list</code>.</p>
 
-<h3 id="23-exclusion">2.3 <code class="language-plaintext highlighter-rouge">Exclusion</code></h3>
+<h2 id="23-exclusion">2.3. <a href="#23-exclusion">Exclusion</a></h2>
 
 <p>This helper validates that value of the specified attribute is not in the slice.</p>
 
@@ -101,7 +113,7 @@ validation of the attribute. The first way is to use <code class="language-plain
 
 <p>The default error message is <code class="language-plaintext highlighter-rouge">is reserved</code>.</p>
 
-<h3 id="24-format">2.4 <code class="language-plaintext highlighter-rouge">Format</code></h3>
+<h2 id="24-format">2.4. <a href="#24-format">Format</a></h2>
 
 <p>This helper validates that value of the specified attribute match the regular expression.</p>
 
@@ -120,7 +132,7 @@ using <code class="language-plaintext highlighter-rouge">Without</code> paramete
 
 <p>The default error message is <code class="language-plaintext highlighter-rouge">has invalid format</code>.</p>
 
-<h3 id="25-length">2.5 <code class="language-plaintext highlighter-rouge">Length</code></h3>
+<h2 id="25-length">2.5. <a href="#25-length">Length</a></h2>
 
 <p>This helper validates that the attributes’ values comply with the specified length
 restrictions.</p>
@@ -136,5 +148,9 @@ when value is too long error with text <code class="language-plaintext highlight
 
       </div>
     </main>
+    <footer><div class="margin-auto col-md-10 col-lg-7 col-xl-5 flex-justify-center p-3">
+  <p>"Active Graph" and the Active Graph logo are the trademarks of Yasha Bubnov. All rights reserved.</p>
+</div>
+</footer>
   </body>
 </html>

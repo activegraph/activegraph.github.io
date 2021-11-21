@@ -7,31 +7,51 @@
   <title>Active Records Basics - ActiveGraph Guides</title>
   <link rel="stylesheet" href="/assets/css/main.css"></link>
 </head>
-<body><div class="Header flex-justify-center">
-  <div class="Header-item">
-    <a class="Header-link" href="/">Guides</a>
-  </div>
-  <div class="Header-item">
-    <a class="Header-link" href="https://pkg.go.dev/github.com/activegraph/activegraph">Documentation</a>
+<body><div class="Header">
+  <div class="d-flex col-md-11 col-lg-7 col-xl-5">
+    <div class="Header-item">
+      <a class="btn btn-outline" href="/">GUIDES</a>
+    </div>
+    <div class="Header-item">
+      <a class="btn btn-outline" href="https://pkg.go.dev/github.com/activegraph/activegraph">
+        DOCUMENTATION<span><svg height="16" class="octicon octicon-arrow-up-right" viewBox="0 0 24 24" version="1.1" width="16" aria-hidden="true"><path fill-rule="evenodd" d="M18.25 15.5a.75.75 0 00.75-.75v-9a.75.75 0 00-.75-.75h-9a.75.75 0 000 1.5h7.19L6.22 16.72a.75.75 0 101.06 1.06L17.5 7.56v7.19c0 .414.336.75.75.75z"></path></svg></span>
+      </a>
+    </div>
+    <div class="Header-item">
+      <a class="btn btn-outline" href="https://github.com/activegraph/activegraph">
+        GITHUB<span><svg height="16" class="octicon octicon-arrow-up-right" viewBox="0 0 24 24" version="1.1" width="16" aria-hidden="true"><path fill-rule="evenodd" d="M18.25 15.5a.75.75 0 00.75-.75v-9a.75.75 0 00-.75-.75h-9a.75.75 0 000 1.5h7.19L6.22 16.72a.75.75 0 101.06 1.06L17.5 7.56v7.19c0 .414.336.75.75.75z"></path></svg></span>
+      </a>
+    </div>
   </div>
 </div>
 <div class="flash flash-full">
-      <div class="margin-auto col-md-11 col-lg-6">
-        <h3 class="pb-2">Active Records Basics</h3>
+      <div class="margin-auto col-md-11 col-lg-7 col-xl-5">
+        <h1 class="pb-2">Active Records Basics</h1>
+        <p>This guide is an introduction to Active Record. After reading this guide
+you'll know:
+</p>
         
         <p><svg class="octicon octicon-check-circle text-green" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM0 8a8 8 0 1116 0A8 8 0 010 8zm11.78-1.72a.75.75 0 00-1.06-1.06L6.75 9.19 5.28 7.72a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l4.5-4.5z"></path></svg>How to use Active Record models to manipulate data stored in a relational database.</p>
         
       </div>
     </div>
-    <main class="margin-auto col-md-11 col-lg-6 d-md-flex flex-row-reverse flex-justify-center flex-row">
-      <div class="flex-shrink-0 m-3">
-        <h3>Chapters</h3>
+    <main class="guide col-md-11 col-lg-7 col-xl-5">
+      <div class="m-3">
+        <h2>Chapters</h2>
         <ol id="toc" class="section-nav">
-<li class="toc-entry toc-h2"><a href="#1-creating-active-record-models">1 Creating Active Record Models</a></li>
+<li class="toc-entry toc-h1"><a href="#1-creating-active-record-models">1. Creating Active Record Models</a></li>
+<li class="toc-entry toc-h1"><a href="#2-reading-and-writing-data">2. Reading and Writing Data</a>
+<ol>
+<li class="toc-entry toc-h2"><a href="#21-create">2.1. Create</a></li>
+<li class="toc-entry toc-h2"><a href="#22-read">2.2. Read</a></li>
+<li class="toc-entry toc-h2"><a href="#23-update">2.3. Update</a></li>
+<li class="toc-entry toc-h2"><a href="#24-delete">2.4. Delete</a></li>
+</ol>
+</li>
 </ol>
       </div>
-      <div class="flex-1 m-3">
-        <h2 id="1-creating-active-record-models">1 Creating Active Record Models</h2>
+      <div class="m-3">
+        <h1 id="1-creating-active-record-models">1. <a href="#1-creating-active-record-models">Creating Active Record Models</a></h1>
 
 <p>To create Active Record models, use the <code class="language-plaintext highlighter-rouge">New</code> method from <code class="language-plaintext highlighter-rouge">activerecord</code> package
 and you’re good to go:</p>
@@ -57,7 +77,65 @@ code like the following:</p>
 <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="c">// #&lt;Product name: "Some Book"&gt;</span>
 </code></pre></div></div>
 
+<hr />
+
+<h1 id="2-reading-and-writing-data">2. <a href="#2-reading-and-writing-data">Reading and Writing Data</a></h1>
+
+<h2 id="21-create">2.1. <a href="#21-create">Create</a></h2>
+
+<p>Active Record objects can be created from hash or have their attributes manually set
+after creation.</p>
+
+<p>For example, using a <code class="language-plaintext highlighter-rouge">Create</code> a new instance of the model will be created and inserted into
+the database.</p>
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">Create</span><span class="p">(</span><span class="n">activesupport</span><span class="o">.</span><span class="n">Hash</span><span class="p">{</span><span class="s">"name"</span><span class="o">:</span> <span class="s">"Eric"</span><span class="p">,</span> <span class="s">"occupation"</span><span class="o">:</span> <span class="s">"psychiatrist"</span><span class="p">})</span>
+</code></pre></div></div>
+
+<p>Using <code class="language-plaintext highlighter-rouge">New</code> method, a new instance of the model will be created without being saved.</p>
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">user</span> <span class="o">:=</span> <span class="n">User</span><span class="o">.</span><span class="n">New</span><span class="p">()</span>
+<span class="n">user</span><span class="o">.</span><span class="n">AssignAttribute</span><span class="p">(</span><span class="s">"name"</span><span class="p">,</span> <span class="s">"Eric"</span><span class="p">)</span>
+<span class="n">user</span><span class="o">.</span><span class="n">AssignAttribute</span><span class="p">(</span><span class="s">"occupation"</span><span class="p">,</span> <span class="s">"psychiatrist"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="22-read">2.2. <a href="#22-read">Read</a></h2>
+
+<p>Active Record provides API for accessing data within a database. Below there are few
+examples of different approaches accessing data.</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// return a collection of all users.</span>
+<span class="n">users</span> <span class="o">:=</span> <span class="n">User</span><span class="o">.</span><span class="n">All</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// return a user with name "Eric".</span>
+<span class="n">user</span> <span class="o">:=</span> <span class="n">User</span><span class="o">.</span><span class="n">Where</span><span class="p">(</span><span class="s">"name"</span><span class="p">,</span> <span class="s">"Eric"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// return a user with id = 1.</span>
+<span class="n">user</span> <span class="o">:=</span> <span class="n">User</span><span class="o">.</span><span class="n">Find</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="23-update">2.3. <a href="#23-update">Update</a></h2>
+
+<p>TBD.</p>
+
+<h2 id="24-delete">2.4. <a href="#24-delete">Delete</a></h2>
+
+<p>Once retrieved, an Active Record instance can be removed from a database.</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">user</span> <span class="o">:=</span> <span class="n">User</span><span class="o">.</span><span class="n">FindBy</span><span class="p">(</span><span class="s">"name"</span><span class="p">,</span> <span class="s">"Eric"</span><span class="p">)</span>
+<span class="n">user</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>Collection of records can be destroyed using <code class="language-plaintext highlighter-rouge">DestroyAll</code> method.</p>
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">user</span> <span class="o">:=</span> <span class="n">User</span><span class="o">.</span><span class="n">Where</span><span class="p">(</span><span class="s">"occupation"</span><span class="p">,</span> <span class="s">"psychiatrist"</span><span class="p">)</span>
+<span class="n">user</span><span class="o">.</span><span class="n">DestroyAll</span><span class="p">()</span>
+</code></pre></div></div>
+
       </div>
     </main>
+    <footer><div class="margin-auto col-md-10 col-lg-7 col-xl-5 flex-justify-center p-3">
+  <p>"Active Graph" and the Active Graph logo are the trademarks of Yasha Bubnov. All rights reserved.</p>
+</div>
+</footer>
   </body>
 </html>

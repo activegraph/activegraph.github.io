@@ -7,32 +7,42 @@
   <title>Action Controller Overview - ActiveGraph Guides</title>
   <link rel="stylesheet" href="/assets/css/main.css"></link>
 </head>
-<body><div class="Header flex-justify-center">
-  <div class="Header-item">
-    <a class="Header-link" href="/">Guides</a>
-  </div>
-  <div class="Header-item">
-    <a class="Header-link" href="https://pkg.go.dev/github.com/activegraph/activegraph">Documentation</a>
+<body><div class="Header">
+  <div class="d-flex col-md-11 col-lg-7 col-xl-5">
+    <div class="Header-item">
+      <a class="btn btn-outline" href="/">GUIDES</a>
+    </div>
+    <div class="Header-item">
+      <a class="btn btn-outline" href="https://pkg.go.dev/github.com/activegraph/activegraph">
+        DOCUMENTATION<span><svg height="16" class="octicon octicon-arrow-up-right" viewBox="0 0 24 24" version="1.1" width="16" aria-hidden="true"><path fill-rule="evenodd" d="M18.25 15.5a.75.75 0 00.75-.75v-9a.75.75 0 00-.75-.75h-9a.75.75 0 000 1.5h7.19L6.22 16.72a.75.75 0 101.06 1.06L17.5 7.56v7.19c0 .414.336.75.75.75z"></path></svg></span>
+      </a>
+    </div>
+    <div class="Header-item">
+      <a class="btn btn-outline" href="https://github.com/activegraph/activegraph">
+        GITHUB<span><svg height="16" class="octicon octicon-arrow-up-right" viewBox="0 0 24 24" version="1.1" width="16" aria-hidden="true"><path fill-rule="evenodd" d="M18.25 15.5a.75.75 0 00.75-.75v-9a.75.75 0 00-.75-.75h-9a.75.75 0 000 1.5h7.19L6.22 16.72a.75.75 0 101.06 1.06L17.5 7.56v7.19c0 .414.336.75.75.75z"></path></svg></span>
+      </a>
+    </div>
   </div>
 </div>
 <div class="flash flash-full">
-      <div class="margin-auto col-md-11 col-lg-6">
-        <h3 class="pb-2">Action Controller Overview</h3>
+      <div class="margin-auto col-md-11 col-lg-7 col-xl-5">
+        <h1 class="pb-2">Action Controller Overview</h1>
+        <p></p>
         
         <p><svg class="octicon octicon-check-circle text-green" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM0 8a8 8 0 1116 0A8 8 0 010 8zm11.78-1.72a.75.75 0 00-1.06-1.06L6.75 9.19 5.28 7.72a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l4.5-4.5z"></path></svg>How to follow the flow of a request through a controller.</p>
         
       </div>
     </div>
-    <main class="margin-auto col-md-11 col-lg-6 d-md-flex flex-row-reverse flex-justify-center flex-row">
-      <div class="flex-shrink-0 m-3">
-        <h3>Chapters</h3>
+    <main class="guide col-md-11 col-lg-7 col-xl-5">
+      <div class="m-3">
+        <h2>Chapters</h2>
         <ol id="toc" class="section-nav">
-<li class="toc-entry toc-h2"><a href="#1-actions">1 Actions</a></li>
-<li class="toc-entry toc-h2"><a href="#2-filters">2 Filters</a></li>
+<li class="toc-entry toc-h1"><a href="#1-actions">1. Actions</a></li>
+<li class="toc-entry toc-h1"><a href="#2-filters">2. Filters</a></li>
 </ol>
       </div>
-      <div class="flex-1 m-3">
-        <h2 id="1-actions">1 Actions</h2>
+      <div class="m-3">
+        <h1 id="1-actions">1. <a href="#1-actions">Actions</a></h1>
 
 <p>When the controller receives the request, the routing determines which controller
 and action to run, then creates a new context and executes the necessary method.</p>
@@ -56,7 +66,7 @@ and action to run, then creates a new context and executes the necessary method.
 application to list all available products, Active Graph will execute an action
 <code class="language-plaintext highlighter-rouge">Index</code> of the <code class="language-plaintext highlighter-rouge">ProductController</code>.</p>
 
-<h2 id="2-filters">2 Filters</h2>
+<h1 id="2-filters">2. <a href="#2-filters">Filters</a></h1>
 
 <div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">func</span> <span class="n">RequireLogin</span><span class="p">(</span><span class="n">ctx</span> <span class="o">*</span><span class="n">actioncontroller</span><span class="o">.</span><span class="n">Context</span><span class="p">)</span> <span class="n">actioncontroller</span><span class="o">.</span><span class="n">Result</span> <span class="p">{</span>
     <span class="k">if</span> <span class="o">!</span><span class="n">loggedIn</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span> <span class="p">{</span>
@@ -73,5 +83,9 @@ application to list all available products, Active Graph will execute an action
 
       </div>
     </main>
+    <footer><div class="margin-auto col-md-10 col-lg-7 col-xl-5 flex-justify-center p-3">
+  <p>"Active Graph" and the Active Graph logo are the trademarks of Yasha Bubnov. All rights reserved.</p>
+</div>
+</footer>
   </body>
 </html>
