@@ -1,8 +1,17 @@
-<div class="Header flex-justify-center">
-  <div class="Header-item">
-    <a class="Header-link" href="/">Guides</a>
-  </div>
-  <div class="Header-item">
-    <a class="Header-link" href="https://pkg.go.dev/github.com/{{ site.repository }}">Documentation</a>
+<div class="Header">
+  <div class="d-flex col-md-11 col-lg-7 col-xl-5">
+    <div class="Header-item">
+      <a class="btn btn-outline" href="/">GUIDES</a>
+    </div>
+    <div class="Header-item">
+      <a class="btn btn-outline" href="https://pkg.go.dev/github.com/{{ site.repository }}">
+        DOCUMENTATION<span>{% octicon arrow-up-right height:16 %}</span>
+      </a>
+    </div>
+    <div class="Header-item">
+      <a class="btn btn-outline" href="https://github.com/{{ site.repository }}">
+        GITHUB<span>{% octicon arrow-up-right height:16 %}</span>
+      </a>
+    </div>
   </div>
 </div>

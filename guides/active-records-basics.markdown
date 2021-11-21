@@ -1,12 +1,15 @@
 ---
 title: Active Records Basics
+description: |
+    This guide is an introduction to Active Record. After reading this guide
+    you'll know:
 layout: guide
 toc: true
 checklist:
 - How to use Active Record models to manipulate data stored in a relational database.
 ---
 
-## 1 Creating Active Record Models
+# 1. [Creating Active Record Models](#1-creating-active-record-models)
 
 To create Active Record models, use the `New` method from `activerecord` package
 and you're good to go:
@@ -35,9 +38,11 @@ p.AssignAttribute("name", "Some Book")
 fmt.Println(p) // #<Product name: "Some Book">
 ```
 
-## 2 Reading and Writing Data
+<hr>
 
-### 5.1 Create
+# 2. [Reading and Writing Data](#2-reading-and-writing-data)
+
+## 2.1. [Create](#21-create)
 
 Active Record objects can be created from hash or have their attributes manually set
 after creation.
@@ -55,7 +60,7 @@ user.AssignAttribute("name", "Eric")
 user.AssignAttribute("occupation", "psychiatrist")
 ```
 
-### 5.2 Read
+## 2.2. [Read](#22-read)
 
 Active Record provides API for accessing data within a database. Below there are few
 examples of different approaches accessing data.
@@ -75,11 +80,11 @@ user := User.Where("name", "Eric")
 user := User.Find(1)
 ```
 
-### 5.3 Update
+## 2.3. [Update](#23-update)
 
 TBD.
 
-### 5.4 Delete
+## 2.4. [Delete](#24-delete)
 
 Once retrieved, an Active Record instance can be removed from a database.
 

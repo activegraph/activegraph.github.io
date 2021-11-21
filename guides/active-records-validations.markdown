@@ -1,12 +1,15 @@
 ---
 title: Active Records Validations
+description: |
+  This guide teaches you how to validate the state of objects before
+  they go into the database using Active Record's validations feature.
 layout: guide
 toc: true
 checklist:
 - How to use built-in Active Record validations.
 ---
 
-## 1 Validations Overview
+# 1. [Validations Overview](#1-validations-overview)
 
 Call `Validates` method in a record builder to enable validation for an attribute:
 ```go
@@ -22,12 +25,12 @@ p.IsValid() // false
 
 As you can see, the `Product` record without `name` attribute is not valid.
 
-## 2 Validation Helpers
+# 2. [Validation Helpers](#2-validation-helpers)
 
 A record builder `aciverecord.R` provides several helpful validators, further we will
 briefly describe all of them. For more details, please, refere to the API documentation.
 
-### 2.1 `Presence`
+## 2.1. [Presence](#21-presence)
 
 This helper validates that value of the specified attribute is not blank. It uses
 `activesupport.IsBlank` method to make a validation. There are two ways to enable
@@ -49,7 +52,7 @@ Product := activerecord.New("product", func(r *activerecord.R) {
 
 The default error message is `can't be blank`.
 
-### 2.2 `Inclusion`
+## 2.2. [Inclusion](#22-inclusion)
 
 This helper validates that value of the specified attribute is available in a slice.
 
@@ -61,7 +64,7 @@ Movie := activerecord.New("movie", func(r *activerecord.R) {
 
 The default error message is `is not included in the list`.
 
-### 2.3 `Exclusion`
+## 2.3. [Exclusion](#23-exclusion)
 
 This helper validates that value of the specified attribute is not in the slice.
 
@@ -73,7 +76,7 @@ Zone := activerecord.New("Zone", func(r *activerecord.R) {
 
 The default error message is `is reserved`.
 
-### 2.4 `Format`
+## 2.4. [Format](#24-format)
 
 This helper validates that value of the specified attribute match the regular expression.
 
@@ -94,7 +97,7 @@ Flight := activerecord.New("flight", func(r *activerecord.R) {
 
 The default error message is `has invalid format`.
 
-### 2.5 `Length`
+## 2.5. [Length](#25-length)
 
 This helper validates that the attributes' values comply with the specified length
 restrictions.

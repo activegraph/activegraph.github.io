@@ -5,22 +5,20 @@
 @import 'rouge.scss';
 
 
-$primary-color: $red-600;
-$secondary-color: $red-900;
+//$primary-color: $red-600;
+$primary-color: $blue-100;
+$secondary-color: $black;
 
 .margin-auto {
   margin: auto;
 }
 
-body {
+main {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-}
-
-main {
   margin: auto;
   margin-top: 0;
+  min-height: 100vh;
 }
 
 footer {
@@ -36,18 +34,20 @@ footer p {
   color: $white-fade-70;
 }
 
-a {
+
+h2 {
+  margin-bottom: 20px;
+}
+
+.guide h2 a {
+  color: $secondary-color;
+}
+.guide h1 a {
   color: $secondary-color;
 }
 
-.Header {
-  background-color: $primary-color;
-}
-
-
 li {
   list-style-type: none;
-  font-weight: bold;
 }
 
 ol ol {
@@ -58,4 +58,31 @@ pre {
   overflow: auto;
   padding: $spacer-3;
   margin-bottom: $spacer-3;
+}
+
+// Primer modification.
+.Header {
+  background-color: $primary-color;
+}
+.Header .d-flex {
+  justify-content: flex-start;
+  margin: auto;
+}
+
+.Header-item .btn {
+  color: $black;
+  background-color: $blue-200;
+  box-shadow: unset;
+  border-radius: 3px;
+  border: unset;
+}
+.Header-item .btn .octicon {
+  color: $black;
+}
+.Header-item .btn:hover {
+  background-color: rgba($blue-300, 0.4);
+}
+
+.flash-full {
+  border-top: none;
 }
