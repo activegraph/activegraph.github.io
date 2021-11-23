@@ -4111,15 +4111,17 @@ ol ol { margin-left: 16px; }
 
 pre { overflow: auto; padding: 16px; margin-bottom: 16px; }
 
-.Header { background-color: #dbedff; }
+.Header { background-color: #cb2431; flex: 1; overflow: auto; scrollbar-width: none; -ms-overflow-style: none; }
 
-.Header .d-flex { justify-content: flex-start; margin: auto; }
+.Header::-webkit-scrollbar { display: none; }
 
-.Header-item .btn { color: #1b1f23; background-color: #c8e1ff; box-shadow: unset; border-radius: 3px; border: unset; }
+.Header .d-flex { justify-content: center; margin: auto; }
 
-.Header-item .btn .octicon { color: #1b1f23; }
+.Header-item .btn { color: #fff; background-color: transparent; box-shadow: unset; border-radius: 3px; border: unset; }
 
-.Header-item .btn:hover { background-color: rgba(121, 184, 255, 0.4); }
+.Header-item .btn .octicon { color: #fff; }
+
+.Header-item .btn:hover { background-color: rgba(134, 24, 29, 0.4); }
 
 .flash-full { border-top: none; }
 
