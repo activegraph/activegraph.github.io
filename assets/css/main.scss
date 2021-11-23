@@ -62,25 +62,34 @@ pre {
 
 // Primer modification.
 .Header {
-  background-color: $primary-color;
+  background-color: $red-600;
+  flex: 1;
+  overflow: auto;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.Header::-webkit-scrollbar {
+  display: none;
 }
 .Header .d-flex {
-  justify-content: flex-start;
+  justify-content: center;
   margin: auto;
 }
 
 .Header-item .btn {
-  color: $black;
-  background-color: $blue-200;
+  color: $white;
+  //background-color: $blue-200;
+  background-color: transparent;
   box-shadow: unset;
   border-radius: 3px;
   border: unset;
 }
 .Header-item .btn .octicon {
-  color: $black;
+  color: $white;
 }
 .Header-item .btn:hover {
-  background-color: rgba($blue-300, 0.4);
+  background-color: rgba($red-900, 0.4);
 }
 
 .flash-full {
