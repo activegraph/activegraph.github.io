@@ -123,12 +123,12 @@ examples of different approaches accessing data.</p>
 <p>Once retrieved, an Active Record instance can be removed from a database.</p>
 
 <div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">user</span> <span class="o">:=</span> <span class="n">User</span><span class="o">.</span><span class="n">FindBy</span><span class="p">(</span><span class="s">"name"</span><span class="p">,</span> <span class="s">"Eric"</span><span class="p">)</span>
-<span class="n">user</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
+<span class="n">user</span><span class="o">.</span><span class="n">Delete</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>Collection of records can be destroyed using <code class="language-plaintext highlighter-rouge">DestroyAll</code> method.</p>
 <div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">user</span> <span class="o">:=</span> <span class="n">User</span><span class="o">.</span><span class="n">Where</span><span class="p">(</span><span class="s">"occupation"</span><span class="p">,</span> <span class="s">"psychiatrist"</span><span class="p">)</span>
-<span class="n">user</span><span class="o">.</span><span class="n">DestroyAll</span><span class="p">()</span>
+<span class="n">user</span><span class="o">.</span><span class="n">DeleteAll</span><span class="p">()</span>
 </code></pre></div></div>
 
       </div>

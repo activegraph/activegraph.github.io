@@ -53,11 +53,8 @@ and action to run, then creates a new context and executes the necessary method.
     <span class="c">// GraphQL scheama. Additionally, the input parameters could be overridden</span>
     <span class="c">// with `Permit` call.</span>
     <span class="n">c</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="k">func</span><span class="p">(</span><span class="n">ctx</span> <span class="o">*</span><span class="n">actioncontroller</span><span class="o">.</span><span class="n">Context</span><span class="p">)</span> <span class="n">actioncontroller</span><span class="o">.</span><span class="n">Result</span> <span class="p">{</span>
-        <span class="n">products</span> <span class="o">:=</span> <span class="n">activesupport</span><span class="o">.</span><span class="n">Return</span><span class="p">(</span><span class="n">Product</span><span class="o">.</span><span class="n">All</span><span class="p">()</span><span class="o">.</span><span class="n">ToA</span><span class="p">())</span>
-
-        <span class="c">// Action should return implementation of a `Result`,</span>
-        <span class="c">// in case of GraphQL, this is always `ContentResult`.</span>
-        <span class="k">return</span> <span class="n">actionview</span><span class="o">.</span><span class="n">ContentResult</span><span class="p">(</span><span class="n">authors</span><span class="p">)</span>
+        <span class="n">products</span> <span class="o">:=</span> <span class="n">Product</span><span class="o">.</span><span class="n">WithContext</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span><span class="o">.</span><span class="n">All</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">actionview</span><span class="o">.</span><span class="n">NestedCollectionView</span><span class="p">(</span><span class="n">products</span><span class="p">)</span>
     <span class="p">})</span>
 <span class="p">})</span>
 </code></pre></div></div>
@@ -70,7 +67,7 @@ application to list all available products, Active Graph will execute an action
 
 <div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">func</span> <span class="n">RequireLogin</span><span class="p">(</span><span class="n">ctx</span> <span class="o">*</span><span class="n">actioncontroller</span><span class="o">.</span><span class="n">Context</span><span class="p">)</span> <span class="n">actioncontroller</span><span class="o">.</span><span class="n">Result</span> <span class="p">{</span>
     <span class="k">if</span> <span class="o">!</span><span class="n">loggedIn</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">actionview</span><span class="o">.</span><span class="n">ContentResult</span><span class="p">(</span><span class="n">errors</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="s">"not logged in"</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">actionview</span><span class="o">.</span><span class="n">Error</span><span class="p">(</span><span class="n">errors</span><span class="o">.</span><span class="n">New</span><span class="p">(</span><span class="s">"not logged in"</span><span class="p">))</span>
     <span class="p">}</span>
     <span class="k">return</span> <span class="no">nil</span>
 <span class="p">}</span>
