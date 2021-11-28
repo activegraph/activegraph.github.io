@@ -30,9 +30,5 @@ This guide covers how to use Active Record validations.
 # Controllers
 ## [Action Controller Overview]({% link guides/action-controller-overview.markdown %})
 
-<div class="flash mt-2 mb-2 p-3 flash-warn" style="border-radius: 0">
-  <p>{% octicon alert %}Work in progress.</p>
-</div>
-
 This guide convers how to use controllers.
 <hr>

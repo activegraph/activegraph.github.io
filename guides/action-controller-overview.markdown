@@ -18,11 +18,8 @@ ProductController := actioncontroller.New(func(c *actioncontroller.C) {
     // GraphQL scheama. Additionally, the input parameters could be overridden
     // with `Permit` call.
     c.Index(func(ctx *actioncontroller.Context) actioncontroller.Result {
-        products := activesupport.Return(Product.All().ToA())
-
-        // Action should return implementation of a `Result`,
-        // in case of GraphQL, this is always `ContentResult`.
-        return actionview.ContentResult(authors)
+        products := Product.WithContext(ctx).All()
+        return actionview.NestedCollectionView(products)
     })
 })
 ```
@@ -37,7 +34,7 @@ application to list all available products, Active Graph will execute an action
 ```go
 func RequireLogin(ctx *actioncontroller.Context) actioncontroller.Result {
     if !loggedIn(ctx) {
-        return actionview.ContentResult(errors.New("not logged in"))
+        return actionview.Error(errors.New("not logged in"))
     }
     return nil
 }
