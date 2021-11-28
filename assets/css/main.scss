@@ -92,6 +92,28 @@ pre {
   background-color: rgba($red-900, 0.4);
 }
 
+.Title {
+  padding: 2rem;
+  background-color: $red-600;
+  color: $white;
+  text-align: center;
+}
+
+.Title h1 {
+  font-size: 4rem;
+  font-weight: 700;
+}
+
+@media (max-width: 480px) {
+  .Title h1 {
+    font-size: 3rem;
+  }
+}
+
+.Title h2 {
+  font-weight: 200;
+}
+
 .flash-full {
   border-top: none;
 }
