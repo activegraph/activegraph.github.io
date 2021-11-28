@@ -21,6 +21,10 @@ main {
   min-height: 100vh;
 }
 
+main h2 a code {
+  font-size: unset;
+}
+
 footer {
   align-items: center;
   justify-content: center;

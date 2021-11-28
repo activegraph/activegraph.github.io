@@ -90,11 +90,11 @@ Once retrieved, an Active Record instance can be removed from a database.
 
 ```go
 user := User.FindBy("name", "Eric")
-user.Destroy()
+user.Delete()
 ```
 
 Collection of records can be destroyed using `DestroyAll` method.
 ```go
 user := User.Where("occupation", "psychiatrist")
-user.DestroyAll()
+user.DeleteAll()
 ```

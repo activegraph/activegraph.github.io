@@ -15,6 +15,12 @@ Record pattern and package.
 
 <hr>
 
+## [Active Records Associations]({% link guides/active-records-associations.markdown %})
+
+This guide covers how to use Active Records associations.
+
+<hr>
+
 ## [Active Records Validations]({% link guides/active-records-validations.markdown %})
 
 This guide covers how to use Active Record validations.
