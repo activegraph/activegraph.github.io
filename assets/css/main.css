@@ -4123,6 +4123,14 @@ pre { overflow: auto; padding: 16px; margin-bottom: 16px; }
 
 .Header-item .btn:hover { background-color: rgba(134, 24, 29, 0.4); }
 
+.Title { padding: 2rem; background-color: #cb2431; color: #fff; text-align: center; }
+
+.Title h1 { font-size: 4rem; font-weight: 700; }
+
+@media (max-width: 480px) { .Title h1 { font-size: 3rem; } }
+
+.Title h2 { font-weight: 200; }
+
 .flash-full { border-top: none; }
 
 /*# sourceMappingURL=main.css.map */
