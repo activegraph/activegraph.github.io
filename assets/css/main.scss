@@ -5,9 +5,13 @@
 @import 'rouge.scss';
 
 
-//$primary-color: $red-600;
 $primary-color: $blue-100;
 $secondary-color: $black;
+
+$canvas-default-color: rgb(34, 39, 46);
+
+$flash-border-color: rgba(27, 31, 36, 0.15);
+$flash-bg-color: #f6f8fa;
 
 .margin-auto {
   margin: auto;
@@ -21,8 +25,12 @@ main {
   min-height: 100vh;
 }
 
-main h2 a code {
-  font-size: unset;
+body {
+  font-size: unset !important;
+}
+
+code {
+ font-size: 0.9rem;
 }
 
 footer {
@@ -66,7 +74,7 @@ pre {
 
 // Primer modification.
 .Header {
-  background-color: $red-600;
+  background-color: $canvas-default-color;
   flex: 1;
   overflow: auto;
 
@@ -83,7 +91,6 @@ pre {
 
 .Header-item .btn {
   color: $white;
-  //background-color: $blue-200;
   background-color: transparent;
   box-shadow: unset;
   border-radius: 3px;
@@ -93,17 +100,24 @@ pre {
   color: $white;
 }
 .Header-item .btn:hover {
-  background-color: rgba($red-900, 0.4);
+  text-decoration: underline;
 }
 
 .Title {
   padding: 2rem;
-  background-color: $red-600;
+  background-color: $canvas-default-color;
   color: $white;
   text-align: center;
 }
 
-.Title h1 {
+.text-gradient {
+  background-clip: text;
+  background: linear-gradient(-70deg, #ed4e50 0%, #9867f0 100%);
+  color: transparent;
+  -webkit-background-clip: text;
+}
+
+.Title a {
   font-size: 4rem;
   font-weight: 700;
 }
@@ -120,4 +134,6 @@ pre {
 
 .flash-full {
   border-top: none;
+  background-color: $flash-bg-color;
+  border-color: $flash-border-color;
 }

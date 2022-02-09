@@ -6,7 +6,9 @@
     {%- include header.html -%}
     <div class="flash flash-full">
       <div class="margin-auto col-md-11 col-lg-7 col-xl-5">
-        <h1 class="pb-2">{{ page.title }}</h1>
+        <h1 class="pb-2">
+          <a class="text-gradient" href="#">{{ page.title }}</a>
+        </h1>
         <p>{{ page.description }}</p>
         {% for item in page.checklist %}
         <p>{% octicon check-circle class:"text-green" %}{{ item }}</p>
