@@ -4095,7 +4095,9 @@ h3 code { font-size: 20px; }
 
 main { display: flex; flex-direction: column; margin: auto; margin-top: 0; min-height: 100vh; }
 
-main h2 a code { font-size: unset; }
+body { font-size: unset !important; }
+
+code { font-size: 0.9rem; }
 
 footer { align-items: center; justify-content: center; display: flex; background-color: #1b1f23; width: 100%; margin-top: auto; }
 
@@ -4113,7 +4115,7 @@ ol ol { margin-left: 16px; }
 
 pre { overflow: auto; padding: 16px; margin-bottom: 16px; }
 
-.Header { background-color: #cb2431; flex: 1; overflow: auto; scrollbar-width: none; -ms-overflow-style: none; }
+.Header { background-color: #22272e; flex: 1; overflow: auto; scrollbar-width: none; -ms-overflow-style: none; }
 
 .Header::-webkit-scrollbar { display: none; }
 
@@ -4123,16 +4125,18 @@ pre { overflow: auto; padding: 16px; margin-bottom: 16px; }
 
 .Header-item .btn .octicon { color: #fff; }
 
-.Header-item .btn:hover { background-color: rgba(134, 24, 29, 0.4); }
+.Header-item .btn:hover { text-decoration: underline; }
 
-.Title { padding: 2rem; background-color: #cb2431; color: #fff; text-align: center; }
+.Title { padding: 2rem; background-color: #22272e; color: #fff; text-align: center; }
 
-.Title h1 { font-size: 4rem; font-weight: 700; }
+.text-gradient { background-clip: text; background: linear-gradient(-70deg, #ed4e50 0%, #9867f0 100%); color: transparent; -webkit-background-clip: text; }
+
+.Title a { font-size: 4rem; font-weight: 700; }
 
 @media (max-width: 480px) { .Title h1 { font-size: 3rem; } }
 
 .Title h2 { font-weight: 200; }
 
-.flash-full { border-top: none; }
+.flash-full { border-top: none; background-color: #f6f8fa; border-color: rgba(27, 31, 36, 0.15); }
 
 /*# sourceMappingURL=main.css.map */
